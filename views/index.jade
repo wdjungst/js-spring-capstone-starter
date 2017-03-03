@@ -1,0 +1,6 @@
+extends layout
+
+block content
+  #app
+  - src = process.env.NODE_ENV === 'production' ? 'application.js' : 'http://localhost:8080/application.js'
+  script(src=src)
