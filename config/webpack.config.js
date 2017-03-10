@@ -1,6 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var autoprefixer = require('autoprefixer');
 
 module.exports = {
   entry: {
@@ -34,10 +35,28 @@ module.exports = {
         }
       },
       { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" },
-      { test: /\.css$/, loader: "css-loader" }
+      {
+        test: /\.scss$/,
+        use: [
+          { loader: "style-loader", query: { sourceMap: true }},
+          {
+            loader: "css-loader",
+            query: {
+              modules: true,
+              importLoaders: true,
+              localIdentName: '[local]___[hash:base64:5]'
+            }
+          },
+          { loader: "sass-loader" },
+          { loader: "postcss-loader" }
+        ],
+        exclude: /node_modules/,
+        include: [ path.join(__dirname, "..", "client")],
+      }
     ]
   },
   plugins: [
+    new webpack.LoaderOptionsPlugin({ options: { postcss: [ autoprefixer ] }}),
     new ExtractTextPlugin('styles.css'),
   ],
   devtool: 'source-map'
