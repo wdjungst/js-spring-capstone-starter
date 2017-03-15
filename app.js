@@ -26,7 +26,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/materialize', express.static(__dirname + '/node_modules/materialize-css/dist/js/'));
+app.use('/materialize', express.static(__dirname + '/node_modules/materialize-css/dist/'));
 app.use('/jquery', express.static(__dirname + '/node_modules/materialize-css/node_modules/jquery/dist/'));
 
 app.use(require('express-session')({
