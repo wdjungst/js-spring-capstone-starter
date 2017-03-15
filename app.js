@@ -8,7 +8,8 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const mongoose = require('mongoose');
-mongoose.connect( 'mongodb://localhost/capstone-starter' );
+const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost/redux_auth'
+mongoose.connect(mongoUri)
 
 const index = require('./routes/index');
 const auth = require('./routes/auth');
