@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev_server": "webpack-dev-server --progress --config config/webpack.config.js",
-    "build": "webpack --config config/webpack.config.js"
+    "build": "webpack --config config/webpack.config.js",
+    "heroku-postbuild": "yarn build"
   },
   "dependencies": {
     "autoprefixer": "^6.7.6",
